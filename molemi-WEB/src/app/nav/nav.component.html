@@ -1,6 +1,10 @@
 <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="#">Molemi Smart Farm</a>
+    <a class="navbar-brand text-uppercase" [routerLink]="['/']">
+      M<span class="small">olemi</span>
+      S<span class="small">mart</span>
+      F<span class="small">arm</span>
+    </a>
     <ul class="navbar-nav" *ngIf="loggedIn()">
       <li class="nav-item">
         <a
@@ -106,7 +110,13 @@
         required
         [(ngModel)]="model.password"
       />
-      <button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
+      <button
+        class="btn btn-success my-2 my-sm-0"
+        [disabled]="!loginForm.valid"
+        type="submit"
+      >
+        Login
+      </button>
     </form>
   </div>
 </nav>
