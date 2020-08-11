@@ -1,3 +1,34 @@
-<p>
-  device-edit works!
-</p>
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-body">
+      <div *ngIf="editDeviceForm.dirty" class="alert alert-info">
+        <strong>Information:</strong> You have made changes. Any unsaved changes
+        will be lost!
+      </div>
+      <div class="row my-5">
+        <div class="col-lg-6 mx-auto">
+          <form #editDeviceForm="ngForm" (ngSubmit)="updateDevice()">
+            <h2 class="text-center text-primary">Edit Device</h2>
+            <hr />
+            <div class="form-group">
+              <label for="task">Name</label>
+              <input
+                class="form-control"
+                name="name"
+                id="name"
+                [(ngModel)]="device.name"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary btn-lg"
+              [disabled]="!editDeviceForm.valid || !editDeviceForm.dirty"
+            >
+              Save Changes
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

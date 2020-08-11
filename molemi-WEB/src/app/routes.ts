@@ -9,6 +9,8 @@ import { DeviceEditComponent } from './devices/device-edit/device-edit.component
 import { DeviceCreateComponent } from './devices/device-create/device-create.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { DeviceListResolver } from './_resolvers/device-list.resolver';
+import { DeviceDetailResolver } from './_resolvers/device-detail.resolver';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,8 +24,8 @@ export const appRoutes: Routes = [
       { path: 'projects', component: ProjectsListComponent },
       { path: 'project/edit', component: ProjectEditComponent },
       { path: 'project/create', component: ProjectCreateComponent },
-      { path: 'devices', component: DevicesListComponent },
-      { path: 'device/edit', component: DeviceEditComponent },
+      { path: 'devices', component: DevicesListComponent, resolve: { devices: DeviceListResolver } },
+      { path: 'device/edit/:id', component: DeviceEditComponent, resolve: { device: DeviceDetailResolver }  },
       { path: 'device/create', component: DeviceCreateComponent },
     ],
   },

@@ -1,0 +1,9 @@
+.card-img-top {
+  height: 100px;
+  width: 130px;
+  padding: 5px;
+}
+
+.edit-btn, .delete-btn {
+  min-width: 100px;
+}

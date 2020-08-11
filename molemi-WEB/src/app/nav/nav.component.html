@@ -62,7 +62,7 @@
           Messages
         </a>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" dropdown>
         <a
           class="nav-link dropdown-toggle"
           id="navbarDropdown"
@@ -70,15 +70,15 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
+          dropdownToggle
         >
           <i class="fa fa-user-circle"> </i>
-          Khabo Morolong
+          Tiisetso Mphuthi
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *dropdownMenu>
+          <a class="dropdown-item" href="#">Profile</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </li>
     </ul>

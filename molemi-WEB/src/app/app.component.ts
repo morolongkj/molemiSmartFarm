@@ -15,12 +15,12 @@ export class AppComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.authService.authState.subscribe(state => {
-      if (state) {
-        this.router.navigate(['dashboard']);
-      } else {
-        this.router.navigate(['home']);
-      }
-    });
+    // this.authService.authState.subscribe(state => {
+    //   if (state) {
+    //     this.router.navigate(['dashboard']);
+    //   } else {
+    //     this.router.navigate(['home']);
+    //   }
+    // });
   }
 }

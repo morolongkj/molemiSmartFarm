@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { appRoutes } from './routes';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -20,8 +21,12 @@ import { AuthService } from './_services/auth.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
+import { HttpService } from './_services/http.service';
+import { DeviceService } from './_services/device.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { DeviceListResolver } from './_resolvers/device-list.resolver';
+import { DeviceDetailResolver } from './_resolvers/device-detail.resolver';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -41,15 +46,21 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
+    BsDropdownModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    Ng2SearchPipeModule,
   ],
   providers: [
     AuthService,
     AuthGuard,
     AlertifyService,
     ErrorInterceptorProvider,
+    HttpService,
+    DeviceService,
+    DeviceListResolver,
+    DeviceDetailResolver
   ],
   bootstrap: [AppComponent],
 })

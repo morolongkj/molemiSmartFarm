@@ -1,3 +1,92 @@
-<p>
-  devices-list works!
-</p>
+<div class="container my-5">
+  <div class="row mt-5 mb-2">
+    <div class="col-lg-5">
+      <form class="form-inline" #form="ngForm" (ngSubmit)="loadDevices()" novalidate>
+        <div class="form-group px-2">
+          <label for="limitParam">Show: </label>
+          <select class="form-control ml-2" style="width: 30px" id="limitParam" [(ngModel)]="limitParam"
+            name="limitParam">
+            <option *ngFor="let limit of limits" [value]="limit">
+              {{limit}}
+            </option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm" style="margin-left:10px">Apply</button>
+      </form>
+    </div>
+    <div class="col-lg-3 ml-auto">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search"
+        name="searchTerm"
+        [(ngModel)]="searchTerm"
+      />
+    </div>
+  </div>
+  <div class="row" *ngFor="let device of devices | filter:searchTerm; let position = index">
+    <div class="col-lg-12">
+      <div class="card" style="box-shadow: none !important;">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-lg-6">
+              <p>
+                <span class="mr-2">Name</span>{{ device.name }}<br />
+                <span class="mr-2">ID</span>{{ device.id }}<br />
+                <span class="mr-2">Owner</span>{{ device.owner }}<br />
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <p class="text-right">
+                <a
+                  class="btn btn-primary btn-sm edit-btn"
+                  [routerLink]="['/device/edit', device.id]"
+                  ><i class="fa fa-edit mr-1"></i>Edit</a
+                ><br />
+                <a class="btn btn-danger btn-sm mt-2 delete-btn"
+                  ><i class="fa fa-trash mr-1"></i>Delete</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-deck">
+            <div class="card" *ngFor="let sensor of device.sensors">
+              <img
+                *ngIf="sensor.name === 'TC'"
+                src="../../../assets/images/hot.png"
+                class="card-img-top mx-auto"
+                alt="..."
+              />
+              <img
+                *ngIf="sensor.name === 'HUM'"
+                src="../../../assets/images/water.png"
+                class="card-img-top mx-auto"
+                alt="..."
+              />
+              <img
+                *ngIf="sensor.name === 'SM1'"
+                src="../../../assets/images/wave.png"
+                class="card-img-top mx-auto"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">{{ sensor.name }}</h5>
+                <p class="card-text text-center display-3">
+                  {{ sensor.value["value"] }}
+                </p>
+                <p class="card-text text-right">
+                  <small class="text-muted"
+                    >Last updated:
+                    {{ sensor.value["date_received"] | date: "short" }}</small
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
