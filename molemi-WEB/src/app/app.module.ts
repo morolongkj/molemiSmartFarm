@@ -20,13 +20,8 @@ import { AuthService } from './_services/auth.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
-
-import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 
-export function tokenGetter() {
-  return localStorage.getItem('access_token');
-}
 
 @NgModule({
   declarations: [
@@ -49,13 +44,6 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter,
-        allowedDomains: ['https://api.waziup.io/api/v2/'],
-        disallowedRoutes: ['https://api.waziup.io/api/v2/auth/'],
-      },
-    }),
   ],
   providers: [
     AuthService,
